@@ -12,7 +12,7 @@ networks:
 
 services:
   homepage:
-    image: shunt/homepage:${HOMEPAGE_VERSION:-latest}
+    image: shuntps/homepage:${HOMEPAGE_VERSION:-latest}
     container_name: "${HOMEPAGE_CONTAINER_NAME:-homepage}"
     restart: unless-stopped
     mem_limit: 512m

@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  IMAGE: shunt/homepage
+  IMAGE: shuntps/homepage
 
 jobs:
   validate:

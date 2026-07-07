@@ -3,7 +3,7 @@
 [![CI](https://github.com/shuntps/homepage/actions/workflows/ci.yml/badge.svg)](https://github.com/shuntps/homepage/actions/workflows/ci.yml)
 [![Release](https://github.com/shuntps/homepage/actions/workflows/release.yml/badge.svg)](https://github.com/shuntps/homepage/actions/workflows/release.yml)
 [![Latest Release](https://img.shields.io/github/v/release/shuntps/homepage?label=latest%20release)](https://github.com/shuntps/homepage/releases)
-[![Docker Hub](https://img.shields.io/docker/v/shunt/homepage?sort=semver&logo=docker&label=docker%20hub)](https://hub.docker.com/r/shunt/homepage)
+[![Docker Hub](https://img.shields.io/docker/v/shuntps/homepage?sort=semver&logo=docker&label=docker%20hub)](https://hub.docker.com/r/shuntps/homepage)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/node-%3E%3D22-339933?logo=node.js&logoColor=white)](package.json)
 
@@ -191,7 +191,7 @@ Required GitHub secrets for Docker publishing:
 
 ## Docker Deployment
 
-The published image is `shunt/homepage`.
+The published image is `shuntps/homepage`.
 
 Pull and start:
 
@@ -216,7 +216,7 @@ HOMEPAGE_VERSION=1.0.0
 Build locally:
 
 ```bash
-docker build -t shunt/homepage:local .
+docker build -t shuntps/homepage:local .
 ```
 
 The provided Compose file expects an external Docker network named
