@@ -22,6 +22,10 @@ ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV HOSTNAME=0.0.0.0
 ENV PORT=3000
+
+RUN rm -rf /usr/local/lib/node_modules /usr/local/bin/npm /usr/local/bin/npx \
+    /usr/local/bin/corepack /usr/local/bin/yarn /usr/local/bin/yarnpkg /opt/yarn*
+
 COPY --from=builder --chown=1001:1001 /app/.next/standalone ./
 COPY --from=builder --chown=1001:1001 /app/.next/static ./.next/static
 COPY --from=builder --chown=1001:1001 /app/public ./public
