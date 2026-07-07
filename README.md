@@ -179,7 +179,7 @@ Releases are based on Conventional Commits:
 
 - `fix:` -> patch release.
 - `feat:` -> minor release.
-- `feat!:` or `BREAKING CHANGE:` -> major release.
+- A `BREAKING CHANGE:` footer -> major release.
 - Other commit types do not release by default.
 
 Required GitHub secrets for Docker publishing:

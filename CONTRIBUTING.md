@@ -53,7 +53,7 @@ Release versions are derived from commits on `main`:
 
 - `fix:` creates a patch release.
 - `feat:` creates a minor release.
-- `feat!:` or a `BREAKING CHANGE:` footer creates a major release.
+- A `BREAKING CHANGE:` footer creates a major release.
 
 ## Pull Requests
 
