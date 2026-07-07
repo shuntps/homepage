@@ -1,0 +1,52 @@
+name: Feature request
+description: Suggest an improvement or new capability.
+title: "feat: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting an improvement. Please focus on the problem, expected value, and maintenance impact.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or need
+      description: What problem should this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed solution
+      description: Describe the change you would like to see.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Describe any alternatives or workarounds you considered.
+    validations:
+      required: false
+  - type: textarea
+    id: benefits
+    attributes:
+      label: Expected benefits
+      description: Explain who benefits and how.
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Potential impact
+      description: Note any compatibility, deployment, performance, or maintenance impact.
+    validations:
+      required: false
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Add screenshots, examples, references, or implementation notes if useful.
+    validations:
+      required: false

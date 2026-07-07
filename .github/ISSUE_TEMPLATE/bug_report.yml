@@ -1,0 +1,79 @@
+name: Bug report
+description: Report a reproducible problem in Homepage.
+title: "fix: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. Please include enough detail for someone else to reproduce the issue.
+  - type: textarea
+    id: description
+    attributes:
+      label: Problem description
+      description: Clearly describe the problem.
+      placeholder: What went wrong?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Provide a minimal, ordered list of steps.
+      placeholder: |
+        1. Configure ...
+        2. Run ...
+        3. Open ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What should have happened?
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Observed behavior
+      description: What actually happened?
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Add screenshots or screen recordings if they help explain the issue.
+    validations:
+      required: false
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Share the relevant runtime, browser, operating system, and deployment details.
+      value: |
+        - OS:
+        - Browser:
+        - Node.js:
+        - npm:
+        - Docker:
+        - Deployment mode:
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs
+      description: Paste logs, terminal output, or browser console errors.
+      render: shell
+    validations:
+      required: false
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Add any other context that may help diagnose the problem.
+    validations:
+      required: false

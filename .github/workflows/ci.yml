@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  commitlint:
+    name: Conventional Commits
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - name: Checkout (full history)
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Validate commit messages
+        uses: wagoid/commitlint-github-action@v6
+
+  validate:
+    name: Validation
+    uses: ./.github/workflows/validate.yml
+    permissions:
+      contents: read
+
+  ci-ok:
+    name: CI OK
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs:
+      - commitlint
+      - validate
+    if: always()
+    steps:
+      - name: Check all required job results
+        env:
+          RESULTS: ${{ join(needs.*.result, ' ') }}
+        run: |
+          echo "Required job results: $RESULTS"
+          for result in $RESULTS; do
+            if [ "$result" != "success" ] && [ "$result" != "skipped" ]; then
+              echo "::error::At least one required job failed"
+              exit 1
+            fi
+          done
+          echo "All required jobs passed"

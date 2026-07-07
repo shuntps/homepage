@@ -1,0 +1,53 @@
+x-logging: &default-logging
+  driver: "json-file"
+  options:
+    max-size: "50m"
+    max-file: "5"
+    compress: "true"
+
+networks:
+  homepage:
+    external: true
+    name: homelab_homepage
+
+services:
+  homepage:
+    image: shunt/homepage:${HOMEPAGE_VERSION:-latest}
+    container_name: "${HOMEPAGE_CONTAINER_NAME:-homepage}"
+    restart: unless-stopped
+    mem_limit: 512m
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp
+      - /app/.next/cache
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://127.0.0.1:${HOMEPAGE_WEB_PORT:-3000}/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    environment:
+      TZ: "${TZ:-America/Toronto}"
+      PORT: "${HOMEPAGE_WEB_PORT:-3000}"
+      SITE_DOMAIN: "${SITE_DOMAIN}"
+      SITE_DESCRIPTION: "${SITE_DESCRIPTION}"
+      SITE_KEYWORDS: "${SITE_KEYWORDS}"
+      SITE_AUTHOR: "${SITE_AUTHOR}"
+      SITE_LOCALE: "${SITE_LOCALE}"
+      SECURITY_TXT_EXPIRES: "${SECURITY_TXT_EXPIRES:-}"
+      SECURITY_TXT_CONTACT: "${SECURITY_TXT_CONTACT:-}"
+    networks:
+      homepage: {}
+    logging: *default-logging
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: homelab_homepage
+      traefik.http.routers.homepage.rule: "Host(`${SITE_DOMAIN}`)"
+      traefik.http.routers.homepage.entrypoints: "web"
+      traefik.http.routers.homepage.middlewares: "public-site-chain@file,rate-limit@file"
+      traefik.http.routers.homepage.service: "homepage"
+      traefik.http.services.homepage.loadbalancer.server.port: "${HOMEPAGE_WEB_PORT:-3000}"
