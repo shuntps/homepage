@@ -19,6 +19,7 @@ generated Open Graph image, and a hardened container deployment path.
 - Generated Open Graph image at `/opengraph-image`.
 - PWA manifest and complete favicon set.
 - RFC 9116 `/.well-known/security.txt` route.
+- Lightweight `/api/health` liveness endpoint.
 - Docker standalone output with non-root runtime.
 - GitHub Actions validation, release, Docker publishing, secret scanning, and image scanning.
 
@@ -124,6 +125,7 @@ homepage/
 |   `-- start-standalone.mjs    # Local helper for Next.js standalone startup
 |-- src/app/
 |   |-- .well-known/security.txt/route.js
+|   |-- api/health/route.js
 |   |-- components/HomePage.js
 |   |-- fonts/GeistMono-Bold.ttf
 |   |-- lib/config.js
@@ -151,6 +153,7 @@ The app is intentionally compact:
 - `src/app/robots.js`, `sitemap.js`, `manifest.js`, and `opengraph-image.js`
   expose SEO and platform routes.
 - `src/app/.well-known/security.txt/route.js` serves the security policy route.
+- `src/app/api/health/route.js` serves a lightweight liveness endpoint.
 
 The app uses `export const dynamic = "force-dynamic"` where runtime environment
 values must be read at request time.
@@ -222,6 +225,10 @@ docker build -t shuntps/homepage:local .
 The provided Compose file expects an external Docker network named
 `homelab_homepage` and a Traefik reverse proxy using the labels in
 `docker-compose.yml`.
+
+The provided Compose healthcheck calls `/api/health` on the container `PORT`
+and validates the `{"status":"ok"}` response. The endpoint can also be used by
+reverse proxy or uptime monitoring liveness checks.
 
 ## Portainer Deployment
 

@@ -7,10 +7,11 @@ Conventional Commits to determine release versions.
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-07-09
+
 ### Added
 
-- Initial open source repository documentation and GitHub community files.
-- GitHub issue forms and pull request template.
+- Lightweight `GET /api/health` liveness endpoint with Docker Compose healthcheck integration.
 
 ## [1.0.0] - 2026-07-07
 
@@ -22,6 +23,9 @@ Conventional Commits to determine release versions.
 - RFC 9116 `/.well-known/security.txt` route.
 - Docker standalone build and Compose deployment configuration.
 - GitHub Actions validation, release, Docker publishing, and security checks.
+- Initial open source repository documentation and GitHub community files.
+- GitHub issue forms and pull request template.
 
-[Unreleased]: https://github.com/shuntps/homepage/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/shuntps/homepage/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/shuntps/homepage/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/shuntps/homepage/releases/tag/v1.0.0
